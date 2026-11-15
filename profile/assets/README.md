@@ -6,7 +6,7 @@ The SVGs here are generated, and text is converted to outlines so they render th
 |---|---|
 | `banner-dark.svg`, `banner-light.svg` | Animated header: a garden grows, a weed sprouts, and the logo goat (`src/goat.py`) trots in and eats it |
 | `stages-dark.svg`, `stages-light.svg` | Plant → Tend → Weed → Harvest strip |
-| `card-twokey.svg`, `card-ferreal.svg` | 2:1 cards for projects that don't have hero art yet |
+| `card-twokey.svg`, `card-ferreal.svg`, `card-samplyd.svg` | 2:1 cards for projects that don't have hero art yet |
 | `divider.svg` | Row of swaying sprouts between sections |
 
 Every other picture on the profile comes straight from each project's own README art, so it stays current on its own.

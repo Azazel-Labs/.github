@@ -134,6 +134,17 @@ Our job is the gardener's job. We choose the seed and prepare the soil. We stake
       <p><code>Unreal Engine 5</code> · <code>Rust</code> · <code>bindings</code></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://github.com/Azazel-Labs/samplyd">
+        <img alt="samplyd: profile without the UAC prompt, an elevated samply on call" src="https://raw.githubusercontent.com/Azazel-Labs/.github/main/profile/assets/card-samplyd.svg" width="100%">
+      </a>
+      <h3><a href="https://github.com/Azazel-Labs/samplyd">samplyd</a></h3>
+      <p>Profile without the UAC prompt. An elevated <a href="https://github.com/mstange/samply">samply</a> broker starts at logon, and any unprivileged process, agent or test drives it over a local pipe and gets JSON back.</p>
+      <p><code>profiling</code> · <code>Windows</code> · <code>Rust</code></p>
+    </td>
+    <td width="50%" valign="top"></td>
+  </tr>
 </table>
 
 <img src="https://raw.githubusercontent.com/Azazel-Labs/.github/main/profile/assets/divider.svg" width="100%" alt="">

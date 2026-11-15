@@ -1,4 +1,4 @@
-"""Social-style 2:1 cards for projects without a hero image (twokey, Ferreal)."""
+"""Social-style 2:1 cards for projects without a hero image (twokey, Ferreal, samplyd)."""
 import re
 from textpath import text_path
 
@@ -23,6 +23,8 @@ RUST = [(r"//.*", "com"), (r"#\[[^\]]*\]", "attr"), (r'"[^"]*"', "str"),
 TOML = [(r"#.*", "com"), (r"^\[\[.*\]\]", "attr"), (r'"[^"]*"', "str"), (r"^[a-z_]+(?= =)", "typ"),
         (r"[=\[\],]", "punct"), (r"\s+", None), (r".", "text")]
 DIFF = [(r"^-.*", "red"), (r"^\+.*", "green"), (r".*", "text")]
+SHELL = [(r"^\$", "com"), (r'"[^"]*"(?=:)', "attr"), (r'"[^"]*"', "str"), (r"\b(true|false|\d+)\b", "num"),
+         (r"(?<= )--?[a-z-]*", "kw"), (r"[{}:,]", "punct"), (r"\s+", None), (r"\S+", "text")]
 
 
 def highlight(line, rules):
@@ -148,6 +150,35 @@ def ferreal():
                  ["UCLASS", "UPROPERTY", "UFUNCTION"], "RUST × UNREAL ENGINE")
 
 
+def samplyd():
+    term = ['$ samplyctl record -- cargo bench', '{', '  "ok": true,', '  "session": {',
+            '    "state": "finished",', '    "stop_reason": "target_exited",',
+            '    "output": "samply-3.json"', '  }', '}', '$ samply load samply-3.json']
+    panel, h = code_panel(652, 70, 564, term, SHELL, "terminal  ·  no admin", size=17)
+    # the broker: an unprivileged client talks to the elevated daemon over a local pipe
+    y = 70 + h + 44
+    def box(x, w, title, sub, color):
+        g = f'<rect x="{x}" y="{y}" width="{w}" height="62" rx="12" fill="{C["panel"]}" stroke="{color}" stroke-width="1.8"/>'
+        p, _ = t(title, x + w / 2, y + 27, 17, C["text"], anchor="middle", var={"wght": 650})
+        q, _ = t(sub, x + w / 2, y + 49, 12.5, C["muted"], anchor="middle", tracking=.06)
+        return g + p + q
+    flow = box(652, 176, "samplyctl", "UNPRIVILEGED", C["border"])
+    flow += box(1016, 200, "samplyd", "ELEVATED · AT LOGON", C["str"])
+    flow += (f'<path d="M836 {y+31}H1006" stroke="{C["typ"]}" stroke-width="2.5" stroke-dasharray="6 7"/>'
+             f'<path d="M996 {y+22}l10 9l-10 9" fill="none" stroke="{C["typ"]}" stroke-width="2.5" stroke-linecap="round"/>')
+    p, _ = t(r"\\.\pipe\samplyd", 921, y + 22, 13, C["muted"], anchor="middle")
+    flow += p
+    # JetBrains Mono has no ✓, so the tick is drawn
+    stamp = (f'<g transform="translate(1004 {70 + h + 8}) rotate(-5)">'
+             f'<rect x="-6" y="-30" width="206" height="44" rx="8" fill="#13261a" stroke="{C["green"]}" stroke-width="2.5"/>'
+             f'<path d="M8 -9l6 6l11 -12" fill="none" stroke="{C["green"]}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>')
+    p, _ = t("NO UAC PROMPT", 112, 0, 17, C["green"], anchor="middle", tracking=.1, var={"wght": 750})
+    stamp += p + "</g>"
+    return frame(panel + flow + stamp, "samplyd",
+                 ["Profile without the UAC prompt.", "An elevated samply, on call."],
+                 ["samply", "Windows ETW", "JSON over a pipe"], "PROFILING WITHOUT ELEVATION")
+
+
 if __name__ == "__main__":
-    for name, fn in [("twokey", twokey), ("ferreal", ferreal)]:
+    for name, fn in [("twokey", twokey), ("ferreal", ferreal), ("samplyd", samplyd)]:
         open(f"out/card-{name}.svg", "w").write(fn())
