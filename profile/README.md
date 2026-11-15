@@ -159,7 +159,7 @@ Our job is the gardener's job. We choose the seed and prepare the soil. We stake
 
 ## 🧺 Save the seeds
 
-Almost everything here is **MIT-0**, **MIT** or **CC0**, so take a cutting and plant it in your own garden. If something sprouts, we'd love to see it: open an issue, send a PR, or star the repo so we know it found sun.
+Everything here is **MIT-0**, so take a cutting and plant it in your own garden. If something sprouts, we'd love to see it: open an issue, send a PR, or star the repo so we know it found sun.
 
 <p align="center">
   <sub>🌱 Planted by people · grown with AI · weeded by hand 🌱</sub>
